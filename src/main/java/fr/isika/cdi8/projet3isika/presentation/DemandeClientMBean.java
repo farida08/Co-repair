@@ -67,9 +67,9 @@ public class DemandeClientMBean {
 		
 		// TODO validation technique de la demande
 		logger.info("fetch client by email : " + userMBean.connectedMail());
-//		if (StringUtils.isNoneBlank(userMBean.connectedMail())) {
-//			Client client = clientService.findByMail(userMBean.connectedMail());
-			Client client = clientService.findByMail("michel@gmail.com");
+	if (StringUtils.isNoneBlank(userMBean.connectedMail())) {
+		Client client = clientService.findByMail(userMBean.connectedMail());
+//			Client client = clientService.findByMail("michel@gmail.com");
 
 			logger.info("fetched client from database : " + client);
 			Demande newDemande = new Demande();
