@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"> 
+	
+	<ui:composition template="/templates/common.xhtml">
+	<ui:define name="title"> Login CLient </ui:define>
+	<ui:define name="content">
+	
+	
+	
+		<h:form align="center">
+
+
+			<link
+				href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css"></link>
+			<script
+				src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+			<!-- <script
+				src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ -->
+
+
+			<div class="col-md-4 login-form-2"> 
+			
+			<h3>Login</h3>
+
+				<div class="form-group"> <p:inputText type="text"
+					class="form-control" placeholder="Your Email *" value="#{userMBean.userDto.mail}" /> </div>
+
+				<div class="form-group"> <p:inputText type="password"
+					class="form-control" placeholder="Your Password *" value="#{userMBean.userDto.password}" /> </div>
+
+				<div class="form-group"> <p:commandButton
+					class="btnSubmit" value="Login" action="#{userMBean.connecter()}"/> </div>
+
+				<div class="form-group"> <a href="#" class="ForgetPwd"
+					value="Login">Forget Password?</a> </div>
+
+				</div>
+			</h:form> 
+	</ui:define>
+</ui:composition> 
+</html>

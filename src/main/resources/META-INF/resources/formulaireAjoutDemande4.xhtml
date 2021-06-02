@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+
+</h:head>
+<ui:composition template="/templates/common.xhtml">
+	<h:outputScript library="js" target="head" name="calendrier.js" />
+	<ui:define name="title"> Ajout Prestation </ui:define>
+	<ui:define name="content">
+
+		<h:body>
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+
+						<address>
+							<strong>Twitter, Inc.</strong><br /> 795 Folsom Ave, Suite 600<br />
+							San Francisco, CA 94107<br /> <abbr title="Phone">P:</abbr>
+							(123) 456-7890
+						</address>
+					</div>
+				</div>
+
+				<br></br>
+
+
+				<!-- ____________________________________________________________________________________________________________________________________________________________________ -->
+
+
+
+				<h:form>
+
+
+					<h5>Date Souhaitée</h5>
+					<br></br>
+					<br></br>
+				<!-- 	<span class="ui-float-label"> <p:inputText id="float-input"
+							value="#{demandeclientmbean.creationdemandeclientdto.datesouhaitee}" />
+						<p:outputLabel for="@previous" value="aaaa/mm/dd" />
+
+					</span>
+ -->
+					<p:datePicker id="basicdatesouhaitee"
+						value="#{demandeClientMBean.creationDemandeClientDTO.dateSouhaitee}"
+						readonlyInput="true" />
+					<br></br>
+					<br></br>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<!-- <h:form> -->
+								<p:selectManyCheckbox align="center" id="basic"
+									value="#{demandeClientMBean.creationDemandeClientDTO.selectedTransactions}">
+									<f:selectItem itemLabel="Réparation" itemValue="reparation" />
+									<f:selectItem itemLabel="Location Garage"
+										itemValue="locationGarage" />
+									<f:selectItem itemLabel="Location Outillage"
+										itemValue="locationOutillage" />
+									<f:selectItem itemLabel="Main d'Oeuvre" itemValue="mainOeuvre" />
+								</p:selectManyCheckbox>
+								<div class="row">
+									<!--  _____________________________reparation__________________________________-->
+									<div class="col-md-3" align="center">
+										<div class="form-group">
+											<h:outputLabel for="sel1">Services proposés :</h:outputLabel>
+											<div class="p-col-12 p-md-6 p-lg-4 p-xl-3">
+												<p:selectOneListbox id="reparation"
+													value="#{demandeClientMBean.creationDemandeClientDTO.nomReparation}">
+													<f:selectItem itemLabel="Freins" itemValue="peinture" />
+													<f:selectItem itemLabel="Pièces Moteur" itemValue="moteur" />
+													<f:selectItem itemLabel="Pompe" itemValue="pompe" />
+													<f:selectItem itemLabel="Peinture" itemValue="peinture" />
+
+												</p:selectOneListbox>
+											</div>
+										</div>
+									</div>
+									<!--  _____________________Garage____________________________________-->
+									<div class="col-md-3" align="center">
+
+
+										<div class="form-group">
+											<h:outputLabel for="sel1">Services proposés :</h:outputLabel>
+											<div class="p-col-12 p-md-6 p-lg-4 p-xl-3">
+												<p:selectOneListbox id="garage"
+													value="#{demandeClientMBean.creationDemandeClientDTO.nomGarage}">
+													<f:selectItem itemLabel="Peinture" itemValue="peinture" />
+													<f:selectItem itemLabel="Mécanique" itemValue="mecanique" />
+													<f:selectItem itemLabel="Electrique" itemValue="electrique" />
+
+												</p:selectOneListbox>
+											</div>
+										</div>
+									</div>
+
+									<!--  _____________________Outillage____________________________________-->
+
+									<div class="col-md-3" align="center">
+										<div class="form-group">
+											<h:outputLabel for="sel1">Services proposés :</h:outputLabel>
+											<div class="p-col-12 p-md-6 p-lg-4 p-xl-3">
+												<p:selectOneListbox id="outillage"
+													value="#{demandeClientMBean.creationDemandeClientDTO.nomOutillage}">
+													<f:selectItem itemLabel="Pompe" itemValue="pompe" />
+													<f:selectItem itemLabel="Compresseur"
+														itemValue="compresseur" />
+													<f:selectItem itemLabel="Clé" itemValue="cle" />
+
+												</p:selectOneListbox>
+											</div>
+										</div>
+									</div>
+									<!--  _____________________Main Oeuvre____________________________________-->
+									<div class="col-md-3" align="center">
+										<div class="form-group">
+											<h:outputLabel for="sel1"
+												value="#{demandeClientMBean.creationDemandeClientDTO.nomMain}">Services proposés :</h:outputLabel>
+											<div class="p-col-12 p-md-6 p-lg-4 p-xl-3">
+												<p:selectOneListbox id="main"
+													value="#{demandeClientMBean.creationDemandeClientDTO.nomMain}">
+													<f:selectItem itemLabel="Peinture" itemValue="peinture" />
+													<f:selectItem itemLabel="Mécanique" itemValue="mecanique" />
+													<f:selectItem itemLabel="Electrique" itemValue="electrique" />
+
+												</p:selectOneListbox>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- </h:form> -->
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row" style="margin-top: 30px !important;">
+
+						<div class="col-md-3" align="center">
+							<div class="form-group" style="">
+
+								<p:commandButton class="btn btn-primary"
+									value="Générer devis le plutôt"
+									action="#{demandeClientMBean.getEarlierPrestation()}">
+								</p:commandButton>
+							</div>
+						</div>
+						<div class="col-md-3" align="center">
+							<div class="form-group" style="">
+								<p:commandButton class="btn btn-primary"
+									value="Générer devis selon une date exacte"
+									action="#{demandeClientMBean.getBetterPrestationByDate()}">
+								</p:commandButton>
+							</div>
+						</div>
+						<div class="col-md-3" align="center">
+							<div class="form-group" style="">
+								<p:commandButton class="btn btn-primary"
+									value="Générer devis le moins cher"
+									action="#{demandeClientMBean.getLowestCostPrestation()}">
+								</p:commandButton>
+							</div>
+						</div>
+					</div>
+
+
+				</h:form>
+			</div>
+			<!--_____________________________________________________________ _______________________________________________________________________________________________________________ -->
+
+
+			<br></br>
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

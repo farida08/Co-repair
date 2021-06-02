@@ -1,0 +1,540 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+<meta http-equiv="refresh" content="10;URL=welcome.xhtml"></meta>
+
+
+<ui:composition template="/templates/common.xhtml">
+	<ui:define name="content">
+
+
+
+
+
+
+<style>
+/* The side navigation menu */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: absolute;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+</style>
+	
+	
+<!-- The sidebar -->
+<div class="sidebar">
+  <a class="active" href="#home">Home</a>
+  <a href="informationsPersonnellesClient.xhtml">Informations Personnelles</a>
+  <a href="ajoutDemande.xhtml">Faire une Demande</a>
+  <a href="ajoutPrestation.xhtml">Mes Demandes</a>
+</div>
+
+<!-- Page content -->
+
+
+<div class="container">
+
+			<div class="row">
+				<div class="col-md-12">
+					<!-- end calendar-container -->
+				</div>
+				<!-- end container -->
+				<!-- <address>
+				 <strong>Twitter, Inc.</strong><br /> 795 Folsom Ave, Suite 600<br /> San Francisco, CA 94107<br /> <abbr title="Phone">P:</abbr> (123) 456-7890
+			</address> -->
+			</div>
+			<br></br>
+			<br></br>
+			
+			<h:form>
+				<div class="row" align="center">
+					<!-- -REPARATION -->
+
+					<div class="col-md-3">
+						<div class="card" style="height: 500px!important">
+							<h6 class="card-header">
+								<p:selectBooleanCheckbox
+									value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.reparation}"
+									itemLabel="Reparation" style ="font-size :larger!important; color :#5538FF">
+									<p:ajax
+										listener="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.setReparationAndOthersToFalse}" />
+								</p:selectBooleanCheckbox>
+							</h6>
+							<div class="card-body">
+								<p:growl>
+									<p:autoUpdate />
+								</p:growl>
+								<div class="form-group">
+									
+									<p:selectOneListbox id="reparation"
+										value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.nomReparation}" style ="font-size :larger!important">
+											<f:selectItem itemLabel="Freins" itemValue="freins" />
+										<f:selectItem itemLabel="Pièces Moteur" itemValue="moteur" />
+										<f:selectItem itemLabel="Pompe" itemValue="pompe" />
+										<f:selectItem itemLabel="Embreyage" itemValue="embreyage" />
+										<f:selectItem itemLabel="Filtres à l'huilre" itemValue="filtres" />
+										<f:selectItem itemLabel="Circlip" itemValue="circlip" />
+										<f:selectItem itemLabel="Engrenage" itemValue="engrenage" />
+
+									</p:selectOneListbox>
+								</div>
+								<div class="p-field" style ="margin-top: 100px!important">
+									<p:outputLabel for="prixReparation" styleClass="p-d-block" style ="font-size :larger!important">Prix forfaitaire</p:outputLabel>
+									<br></br>
+									<p:inputNumber id="prixReparation" styleClass="p-d-block"
+										value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.prixReparation}" />
+								</div>
+
+								<div class="p-field p-col-12 p-md-4">
+									<p:outputLabel for="multiselectReparation"
+										value="Multiple Selection" />
+									<p:datePicker id="multiselectReparation"
+										selectionMode="multiple"
+										value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.multiReparationDate}"
+										readonlyInput="true" />
+								</div>
+							</div>
+							<div class="card-footer"></div>
+						</div>
+					</div>
+					<!-- 		location garage -->
+					<div class="col-md-3">
+						<div class="card" style="height: 500px!important">
+							<h6 class="card-header">
+								<p:selectBooleanCheckbox
+									value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.locationGarage}"
+									itemLabel="Location garage" style ="font-size :larger!important">
+									<p:ajax
+										listener="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.setLocationGarageAndOthersToFalse}" />
+								</p:selectBooleanCheckbox>
+							</h6>
+							<div class="card-body">
+								<p:growl>
+									<p:autoUpdate />
+								</p:growl>
+								<div class="form-group">
+									
+									<p:selectOneListbox id="garage"
+										value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.nomGarage}" style ="font-size :larger!important">
+										<f:selectItem itemLabel="Peinture" itemValue="peinture" />
+										<f:selectItem itemLabel="Mécanique" itemValue="mecanique" />
+										<f:selectItem itemLabel="Electrique" itemValue="electrique" />
+
+									</p:selectOneListbox>
+								</div>
+								<div class="p-field" style="margin-top: 176px!important">
+								<br></br>
+									<p:outputLabel for="prixGarage" styleClass="p-d-block" style ="font-size :larger!important">Prix forfaitaire</p:outputLabel>
+									<br></br>
+									<p:inputNumber id="prixGarage" styleClass="p-d-block"
+										value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.prixGarage}" />
+								</div>
+								<div class="p-field p-col-12 p-md-4">
+									<p:outputLabel for="multiselectGarage"
+										value="Multiple Selection" />
+									<p:datePicker id="multiselectGarage" selectionMode="multiple"
+										value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.multiGarageDate}"
+										readonlyInput="true" />
+								</div>
+							</div>
+							<div class="card-footer"></div>
+						</div>
+					</div>
+					<!-- 	location outillage -->
+					<!-- <p:growl id="msg" /> -->
+					<div class="col-md-3" >
+						<div class="card" style="height: 500px!important">
+							<h6 class="card-header">
+								<p:selectBooleanCheckbox
+									value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.locationOutillage}"
+									itemLabel="Location d'outillage" style ="font-size :larger!important">
+									<p:ajax
+										listener="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.setLocationOutillageAndOthersToFalse}" />
+								</p:selectBooleanCheckbox>
+							</h6>
+							<div class="card-body">
+								<p:growl>
+									<p:autoUpdate />
+								</p:growl>
+								<div class="form-group">
+									
+									<p:selectOneListbox id="outillage"
+										value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.nomOutillage}" style ="font-size :larger!important">
+										<f:selectItem itemLabel="Pompe" itemValue="pompe" />
+										<f:selectItem itemLabel="Compresseur" itemValue="compresseur" />
+										<f:selectItem itemLabel="Clé" itemValue="cle" />
+										<f:selectItem itemLabel="Booster" itemValue="booster" />
+
+									</p:selectOneListbox>
+								</div>
+								<div class="p-field" style ="margin-top: 170px!important">
+									<p:outputLabel for="prixOutillage" styleClass="p-d-block" style ="font-size :larger!important">Prix forfaitaire</p:outputLabel>
+									<br></br>
+									<p:inputNumber id="prixOutillage" styleClass="p-d-block"
+										value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.prixOutillage}" />
+								</div>
+								<div class="p-field p-col-12 p-md-4">
+									<p:outputLabel for="multiselectLocationOutillage"
+										value="Multiple Selection" />
+									<p:datePicker id="multiselectLocationOutillage"
+										selectionMode="multiple"
+										value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.multiLocationOutillageDate}"
+										readonlyInput="true" />
+								</div>
+							</div>
+							<div class="card-footer"></div>
+						</div>
+					</div>
+
+					<!-- Main d'ouvre -->
+					<div class="col-md-3">
+						<div class="card" style="height: 500px!important">
+							<h6 class="card-header">
+								<p:selectBooleanCheckbox
+									value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.mainOuvre}"
+									itemLabel="Main d'oeuvre" style ="font-size :larger!important">
+									<p:ajax
+										listener="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.setMainOuvreAndOthersToFalse}" />
+								</p:selectBooleanCheckbox>
+							</h6>
+							<div class="card-body">
+								<p:growl>
+									<p:autoUpdate />
+								</p:growl>
+								<div class="form-group">
+									
+									<p:selectOneListbox id="main"
+										value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.nomMainOuvre}" style ="font-size :larger!important">
+										<f:selectItem itemLabel="Freins" itemValue="freins" />
+										<f:selectItem itemLabel="Pièces Moteur" itemValue="moteur" />
+										<f:selectItem itemLabel="Pompe" itemValue="pompe" />
+										<f:selectItem itemLabel="Embreyage" itemValue="embreyage" />
+										<f:selectItem itemLabel="Filtres à l'huilre" itemValue="filtres" />
+										<f:selectItem itemLabel="Circlip" itemValue="circlip" />
+										<f:selectItem itemLabel="Engrenage" itemValue="engrenage" />
+
+									</p:selectOneListbox>
+								</div>
+								<div class="p-field" style="margin-top: 100px!important">
+									<p:outputLabel for="prixMainOuvre" styleClass="p-d-block" style ="font-size :larger!important">Prix forfaitaire</p:outputLabel>
+									<br></br>
+									<p:inputNumber id="prixMainOuvre" styleClass="p-d-block"
+										value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.prixMainOuvre}" />
+								</div>
+								<div class="p-field p-col-12 p-md-4">
+									<p:outputLabel for="multiselectmultiMainOeuvre"
+										value="Multiple Selection" />
+									<p:datePicker id="multiselectmultiMainOeuvre"
+										selectionMode="multiple"
+										value="#{prestationFournisseurMBean.creationPrestationFournisseurDTO.multiMainOeuvreDate}"
+										readonlyInput="true" />
+								</div>
+							</div>
+							<div class="card-footer"></div>
+						</div>
+					</div>
+
+				</div>
+				<!-- submit button creation prestation -->
+				<div class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-3"></div>
+					<div class="col-md-3"></div>
+					<div class="col-md-3">
+						<br></br> <br></br> <br></br> <br></br> <br></br> <br></br>
+						<div class="card">
+							<p:commandButton value="Ajouter prestation"
+								action="#{prestationFournisseurMBean.createPrestationFournisseur()}" />
+						</div>
+					</div>
+				</div>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+			</h:form>
+			<hr align="left" width="50%" />
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Product</th>
+								<th>Payment Taken</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>TB - Monthly</td>
+								<td>01/04/2012</td>
+								<td>Default</td>
+							</tr>
+							<tr class="table-active">
+								<td>1</td>
+								<td>TB - Monthly</td>
+								<td>01/04/2012</td>
+								<td>Approved</td>
+							</tr>
+							<tr class="table-success">
+								<td>2</td>
+								<td>TB - Monthly</td>
+								<td>02/04/2012</td>
+								<td>Declined</td>
+							</tr>
+							<tr class="table-warning">
+								<td>3</td>
+								<td>TB - Monthly</td>
+								<td>03/04/2012</td>
+								<td>Pending</td>
+							</tr>
+							<tr class="table-danger">
+								<td>4</td>
+								<td>TB - Monthly</td>
+								<td>04/04/2012</td>
+								<td>Call in to confirm</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Heading</h2>
+					<p>Donec id elit non mi porta gravida at eget metus. Fusce
+						dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+						ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
+						magna mollis euismod. Donec sed odio dui.</p>
+					<p>
+						<a class="btn" href="#">View details »</a>
+					</p>
+				</div>
+			</div>
+
+
+ 
+					</div>
+
+<div class="main-panel">
+				<div class="content-wrapper">
+</div>
+	</div>
+	
+	
+	<h:body>
+
+		
+
+	</h:body>	
+	
+	<style>
+	
+	@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+
+* {
+  font-family: Roboto;
+}
+
+
+.footer-distributed {
+  position: absolute;
+  bottom:0;
+  background-color: #292c2f;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: normal 16px sans-serif;
+  padding: 45px 50px;
+}
+
+.footer-distributed .footer-left p {
+  color: #8f9296;
+  font-size: 14px;
+  margin: 0;
+}
+/* Footer links */
+
+.footer-distributed p.footer-links {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0 0 10px;
+  padding: 0;
+  transition: ease .25s;
+}
+
+.footer-distributed p.footer-links a {
+  display: inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+  color: inherit;
+  transition: ease .25s;
+}
+
+.footer-distributed .footer-links a:before {
+  content: "·";
+  font-size: 20px;
+  left: 0;
+  color: #fff;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+  content: none;
+}
+
+.footer-distributed .footer-right {
+  float: right;
+  margin-top: 6px;
+  max-width: 180px;
+}
+
+.footer-distributed .footer-right a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  background-color: #33383b;
+  border-radius: 2px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+  margin-left: 3px;
+  transition:all .25s;
+}
+
+.footer-distributed .footer-right a:hover{transform:scale(1.1); -webkit-transform:scale(1.1);}
+
+.footer-distributed p.footer-links a:hover{text-decoration:underline;}
+
+/* Media Queries */
+
+@media (max-width: 50px) {
+  .footer-distributed .footer-left, .footer-distributed .footer-right {
+    text-align: center;
+  }
+  .footer-distributed .footer-right {
+    float: none;
+    margin: 0 auto 20px;
+  }
+  .footer-distributed .footer-left p.footer-links {
+    line-height: 1.8;
+  }
+}
+	
+	</style>
+	
+
+		<footer class="footer-distributed">
+
+			<div class="footer-right">
+
+				<a href="#"><i class="fa fa-facebook"></i></a>
+				<a href="#"><i class="fa fa-twitter"></i></a>
+				<a href="#"><i class="fa fa-linkedin"></i></a>
+				<a href="#"><i class="fa fa-github"></i></a>
+
+			</div>
+
+			<div class="footer-left">
+
+				<p class="footer-links">
+					<a class="link-1" href="welcome.xhtml">Home</a>
+
+					<a href="#">Blog</a>
+
+					<a href="#">Pricing</a>
+
+					<a href="#">About</a>
+
+					<a href="#">Faq</a>
+
+					<a href="#">Contact</a>
+				</p>
+
+				<p>Co-REPAIR &copy; 2021</p>
+			</div>
+
+		</footer>
+	
+	
+	
+	</ui:define>
+	
+	
+	
+	<!-- <ui:define name="title"> Login CLient </ui:define>
+	<ui:define name="content">
+	
+	
+<h:body> 
+
+</h:body>
+	
+</ui:define> -->
+
+</ui:composition> 
+</html>

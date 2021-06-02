@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<div class="container-fluid"
+		style="margin-left: 150PX; margin-Top: 100px; margin-right: 150px">
+		<!-- 	<p:card style="border:aqua"> -->
+
+		<p:fieldset legend="Proposition de devis : " toggleable="true"
+			toggleSpeed="500">
+			<div class="row">
+				<div class="p-text-right" style="position: right">CO- REPAR</div>
+			</div>
+
+			<h:form>
+
+				<h:panelGrid columns="2" cellpadding="7">
+					<h:outputLabel for="name" value="Date d'envoie demande:" />
+					<h:outputText id="name" value="#{dtBasicView.products}" />
+					<h:outputLabel for="id_Devis" value="numero de Devis: " />
+					<h:outputText id="id_Devis" value="#{dtBasicView.products}" />
+					<h:outputLabel for="Cout_total" value="Cout Total: " />
+					<h:outputText id="Cout_total" value="#{dtBasicView.products}" />
+
+					<!-- 	<p:repeat value="#{demandeClientMBean}" var="product">
+					
+					</p:repeat> -->
+				</h:panelGrid>
+					<p:dataTable var="devis" value="#{devisMBean.affichageDevis}">
+						<p:column headerText="Status">
+							<h:outputText value="#{devis.statusTransaction}" />
+						</p:column>
+						<p:column headerText="Transaction">
+							<h:outputText value="#{devis.type}" />
+						</p:column>
+						<p:column headerText="sousType">
+							<h:outputText value="#{devis.sousType}" />
+						</p:column>
+						<p:column headerText="cout">
+							<h:outputText value="#{devis.cout}" />
+						</p:column>
+						<p:column headerText="dateSouhaite">
+							<h:outputText value="#{devis.dateSouhaite}" />
+						</p:column>
+
+					</p:dataTable>
+				
+
+
+
+				<br />
+				<br />
+
+				<!-- update="@form" -->
+				<div class="row">
+					<div class="col-auto" align="right">
+						<button class="btn btn-primary" action="#{dtBasicView.products}">valider
+							Devis</button>
+					</div>
+					<br />
+					<div class="col-auto" align="right">
+						<button class="btn btn-primary" action="#{dtBasicView.products}">Rejeter
+							Devis</button>
+					</div>
+				</div>
+
+			</h:form>
+		</p:fieldset>
+		<!-- </p:card> -->
+	</div>
+
+</h:body>
+</html>

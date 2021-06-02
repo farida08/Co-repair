@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css"></link>
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<!-- <script
+		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script -->>
+</h:head>
+<ui:composition template="/templates/common.xhtml">
+	<ui:define name="title"> Formulaire Client </ui:define>
+	<ui:define name="formulaire">
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/styles.css" />
+	</ui:define>
+	<ui:define name="content">
+		<div class="container" align="center" display="inline">
+			<h1>Formulaire Inscription Client</h1>
+			<br></br>
+			<br></br>
+			<br></br>
+			<h:form class="needs-validation">
+				<div class="row">
+					<div class="col">
+						<div>
+							<label for="prenom">Prénom</label>
+							<p:inputText type="text" class="form-control" id="prenom"
+								placeholder="Pierre" value="#{clientMBean.newClient.prenom}"/>
+							<div class="valid-feedback">Ok !</div>
+							<div class="invalid-feedback">Valeur incorrecte</div>
+						</div>
+						<div>
+							<label for="nom">Nom </label>
+							<p:inputText type="text" class="form-control" id="nom"
+								placeholder="Giraud" value="#{clientMBean.newClient.nom}"/>
+							<div class="valid-feedback">Ok !</div>
+							<div class="invalid-feedback">Valeur incorrecte</div>
+						</div>
+						<div>
+							<label for="pseudo">Pseudo</label>
+							<p:inputText type="text" class="form-control" id="pseudo"
+								placeholder="PierreGird" value="#{clientMBean.newClient.username}" />
+							<div class="valid-feedback">Ok !</div>
+							<div class="invalid-feedback">Valeur incorrecte</div>
+						</div>
+						<div>
+							<label for="email">Email</label>
+							<p:inputText type="text" class="form-control" id="email"
+								placeholder="Email" value="#{clientMBean.newClient.mail}"/>
+							<div class="valid-feedback">Ok !</div>
+							<div class="invalid-feedback">Valeur incorrecte</div>
+						</div>
+						<div>
+							<label for="motPasse">Mot de Passe</label>
+							<p:inputText type="password" class="form-control" id="motPasse"
+								placeholder="votre mot de passe" value="#{clientMBean.newClient.motPasse}"/>
+							<div class="valid-feedback">Ok !</div>
+							<div class="invalid-feedback">Valeur incorrecte</div>
+						</div>
+						<div>
+							<label for="numTel">Numéro de téléphone</label>
+							<p:inputText type="text" class="form-control" id="numTel"
+								placeholder="0102030405" value="#{clientMBean.newClient.numTel}" />
+							<div class="valid-feedback">Ok !</div>
+							<div class="invalid-feedback">Valeur incorrecte</div>
+						</div>
+						<br></br>
+						<div class="row">
+							<div class="col-auto" align="right">
+								<button class="btn btn-primary" type="submit" action="#{clientMBean.createClient()}">Envoyer</button>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div>
+							<label for="numTel">Numéro de la rue</label>
+							<p:inputText type="text" class="form-control" id="numero"
+								placeholder="0102030405" value="#{clientMBean.newAdresse.numero}" />
+							<div class="valid-feedback">Ok !</div>
+							<div class="invalid-feedback">Valeur incorrecte</div>
+						</div>
+						<div>
+							<label for="numTel">Nom de la rue</label>
+							<p:inputText type="text" class="form-control" id="rue"
+								placeholder="0102030405" value="#{clientMBean.newAdresse.rue}"/>
+							<div class="valid-feedback">Ok !</div>
+							<div class="invalid-feedback">Valeur incorrecte</div>
+						</div>
+						<div>
+							<label for="ville">Ville</label>
+							<p:inputText type="text" class="form-control" id="ville"
+								placeholder="Ville" value="#{clientMBean.newAdresse.ville}"/>
+							<div class="valid-feedback">Ok !</div>
+							<div class="invalid-feedback">Valeur incorrecte</div>
+						</div>
+						<div>
+							<label for="cp">Code postal</label>
+							<p:inputText type="number" class="form-control" id="cp"
+								placeholder="Code postal" value="#{clientMBean.newAdresse.codePostale}" />
+							<div class="valid-feedback">Ok !</div>
+							<div class="invalid-feedback">Valeur incorrecte</div>
+						</div>
+						<div>
+							<label for="pays">Pays</label>
+							<p:inputText type="text" class="form-control" id="pays"
+								placeholder="Pays" value="#{clientMBean.newAdresse.pays}"/>
+							<div class="valid-feedback">Ok !</div>
+							<div class="invalid-feedback">Valeur incorrecte</div>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
